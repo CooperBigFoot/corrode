@@ -14,7 +14,7 @@ use super::constants::{MAX_TANH_ARG, ROUTING_DENOMINATOR};
 pub fn production_store_rainfall(precip: f64, store: f64, x1: f64) -> (f64, f64, f64) {
     // Scaled precipitation with numerical safeguard
     let ws = (precip / x1).min(MAX_TANH_ARG);
-    let tws = (2.0 * ws).tanh();
+    let tws = ws.tanh();
 
     // Store ratio
     let sr = store / x1;
@@ -39,7 +39,7 @@ pub fn production_store_rainfall(precip: f64, store: f64, x1: f64) -> (f64, f64,
 pub fn production_store_evaporation(pet: f64, s1: f64, x1: f64) -> (f64, f64) {
     // Scaled evapotranspiration with numerical safeguard
     let ws = (pet / x1).min(MAX_TANH_ARG);
-    let tws = (2.0 * ws).tanh();
+    let tws = ws.tanh();
 
     // Store ratio
     let sr = s1 / x1;
